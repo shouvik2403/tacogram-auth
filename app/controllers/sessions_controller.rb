@@ -22,7 +22,13 @@ class SessionsController < ApplicationController
       flash["notice"] = "This email does not exist."
       redirect_to "/login"    
     end    
-  
+  end
+
+  def destroy
+    # logout the user
+      session["user_id"] = nil
+      flash["notice"] = "Goodbye!"
+      redirect_to "/login"
   end
 
 end

@@ -4,5 +4,6 @@ class ApplicationController < ActionController::Base
   def current_user
     puts "------------------ code before every request ------------------"
     # Optional: @current_user = ...
+    @current_user = session["user_id"]
   end
 end
