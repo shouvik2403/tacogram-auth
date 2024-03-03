@@ -17,6 +17,9 @@ class UsersController < ApplicationController
         # TODO: encrypt user's password "at rest"  
         @user["password"] = BCrypt::Password.create(params["password"])
         @user.save
+        # add a secure cookie for this user
+        session["user_id"] = User.find_by({"email" => @user["email"]})["id"]  
+        # redicrect to posts page
         redirect_to "/posts"
       else   
         flash["notice"] = "An account with this email already exists! Please try a different email or login to your account."
